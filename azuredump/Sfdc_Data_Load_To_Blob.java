@@ -27,7 +27,7 @@ import com.microsoft.azure.storage.StorageException;
 import com.test.DumpDataToBlob;
 import com.test.DumpDataToBlob.*;
 
-public class SampleInsertcsv {
+public class Sfdc_Data_Load_To_Blob {
  /* --------- Login Credentials ---------- */
  private static String userName;
  private static String password;
@@ -54,11 +54,11 @@ public class SampleInsertcsv {
 
   /* Main Method */
  public static void main(String[] args) throws IOException {
-  new SampleInsertcsv();
+  new Sfdc_Data_Load_To_Blob();
  }
 
   /* Constructor */
- public SampleInsertcsv() throws IOException {
+ public Sfdc_Data_Load_To_Blob() throws IOException {
   getLoginCredentials();
   this.oauth2Login();
  // this.insertEmployee();
@@ -235,7 +235,7 @@ public class SampleInsertcsv {
 			   
 			 //  String  queryStr_ld ="/query?q=select+FirstName,LastName,Name,LeadSource,Status,Industry,AnnualRevenue,NumberOfEmployees,CreatedDate,LastModifiedDate,LastModifiedById,LastActivityDate,LastViewedDate,LastReferencedDate,CleanStatus,DandbCompanyId,EmailBouncedReason,EmailBouncedDate+from+Lead";
 			  
-			  String  queryStr_ld ="/query?q=select+Id,IsDeleted,MasterRecordId,LastName,FirstName,Salutation,Name,Title,Company,Street,City,State,PostalCode,Country,Latitude,Longitude,Address,Phone,MobilePhone,Fax,Email,Website,PhotoUrl,Description,LeadSource,Status,Industry,Rating,AnnualRevenue,NumberOfEmployees,OwnerId,IsConverted,ConvertedDate,ConvertedAccountId,ConvertedContactId,ConvertedOpportunityId,IsUnreadByOwner,CreatedDate,CreatedById,LastModifiedDate,LastModifiedById,SystemModstamp,LastActivityDate,LastViewedDate,LastReferencedDate,Jigsaw,JigsawContactId,CleanStatus,CompanyDunsNumber,DandbCompanyId,EmailBouncedReason,EmailBouncedDate,SICCode__c,ProductInterest__c,Primary__c,CurrentGenerators__c,NumberofLocations__c+from+Lead";
+			   String  queryStr_ld ="/query?q=select+Id,IsDeleted,MasterRecordId,LastName,FirstName,Salutation,Name,Title,Company,Street,City,State,PostalCode,Country,Latitude,Longitude,Address,Phone,MobilePhone,Fax,Email,Website,PhotoUrl,Description,LeadSource,Status,Industry,Rating,AnnualRevenue,NumberOfEmployees,OwnerId,IsConverted,ConvertedDate,ConvertedAccountId,ConvertedContactId,ConvertedOpportunityId,IsUnreadByOwner,CreatedDate,CreatedById,LastModifiedDate,LastModifiedById,SystemModstamp,LastActivityDate,LastViewedDate,LastReferencedDate,Jigsaw,JigsawContactId,CleanStatus,CompanyDunsNumber,DandbCompanyId,EmailBouncedReason,EmailBouncedDate,SICCode__c,ProductInterest__c,Primary__c,CurrentGenerators__c,NumberofLocations__c+from+Lead";
 			   
 			   System.out.println("\nThe query is " + queryStr_ld);
 			   HttpClient httpClient_ld = new DefaultHttpClient();
@@ -260,7 +260,7 @@ public class SampleInsertcsv {
 			     
 			        System.out.println("+++++++++++++ Before Json +++++++++++++++++++");
 				     
-				     System.out.println(response_string_ld);
+				  //   System.out.println(response_string_ld);
 				     
 				 
 				     
@@ -347,7 +347,7 @@ public class SampleInsertcsv {
 			    		 System.out.print(json_ld.getJSONArray("records").getJSONObject(i).get("NumberofLocations__c") + ", "); */
 			    		 
 			    		 
-			    		 System.out.println("Getting the data from sfdc"); 
+			    		// System.out.println("Getting the data from sfdc"); 
 			    		 
 			    		 String s1 = json_ld.getJSONArray("records").getJSONObject(i).getString("Id");
 			    		// boolean s2 = json_ld.getJSONArray("records").getJSONObject(i).getBoolean("IsDeleted");
@@ -530,7 +530,7 @@ public class SampleInsertcsv {
 			    	 /* Finaly data dump to azure blob */
 			    	 
 			    	 try {
-		   			     DumpData.Azure_DB(Lead_DB);
+		   			     Azure_Blob_Connector.Azure_DB(Lead_DB);
 		   			     
 		   			     System.out.println(" Enter inside try Block");
 		   			     }
@@ -796,8 +796,8 @@ public class SampleInsertcsv {
  class UserCredentials {
   String loginInstanceDomain = "ap2.salesforce.com";
   String apiVersion = "35";
-  String userName = SampleInsertcsv.userName;
-  String password = SampleInsertcsv.password;
+  String userName = Sfdc_Data_Load_To_Blob.userName;
+  String password = Sfdc_Data_Load_To_Blob.password;
   String consumerKey = "3MVG9ZL0ppGP5UrC4rjQFkEhUnYTSNP_Tvanu8b30_TqkLH7cOg8UC9zHKCsX.mgW_hFVY2J0jRyO.Ev_VsH0";  
   String consumerSecret = "1975032834009986449";
   String grantType = "password";

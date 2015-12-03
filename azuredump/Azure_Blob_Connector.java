@@ -20,7 +20,7 @@ import com.microsoft.azure.storage.blob.CloudBlobClient;
 import com.microsoft.azure.storage.blob.CloudBlobContainer;
 import com.microsoft.azure.storage.blob.CloudBlockBlob;
 //dump data from local to azure blob storage
-public class DumpData {
+public class Azure_Blob_Connector {
 	public static  String storageConnectionString;
 	public static  String containerName;
 	public static String DefaultEndpointsProtocol;
@@ -68,7 +68,7 @@ public class DumpData {
     public static void Azure_DB(String blobName)throws FileNotFoundException, GeneralSecurityException, URISyntaxException, StorageException, IOException
     {
     	System.out.println(" on the way to put the data inside blob");
-    	DumpData dump=new DumpData();
+    	Azure_Blob_Connector dump=new Azure_Blob_Connector();
 		blob=dump.ConnectToAzure(blobName);
 		//String path="E:\\input\\facebook_1.csv";
 		System.out.println("start the dump process");
